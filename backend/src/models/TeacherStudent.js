@@ -22,7 +22,7 @@ const TeacherStudent = sequelize.define(
     tableName: "teacher_students",
     timestamps: true,
     underscored: true,
-    indexes: [{ unique: true, fields: ["teacherId", "studentId"] }],
+    indexes: [{ unique: true, fields: ["teacher_id", "student_id"] }],
   }
 );
 
