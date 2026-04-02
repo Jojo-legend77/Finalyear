@@ -22,7 +22,7 @@ function HomePage() {
               Login
             </Link>
             <Link className="btn secondary" to="/register">
-              Register
+              Registration Info
             </Link>
           </div>
         )}

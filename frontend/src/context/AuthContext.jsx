@@ -48,13 +48,6 @@ export function AuthProvider({ children }) {
     return response.data.data.user;
   };
 
-  const register = async (payload) => {
-    const response = await api.post("/auth/register", payload);
-    setToken(response.data.data.token);
-    setUser(response.data.data.user);
-    return response.data.data.user;
-  };
-
   const logout = () => {
     setToken(null);
     setUser(null);
@@ -76,7 +69,6 @@ export function AuthProvider({ children }) {
       user,
       loading,
       login,
-      register,
       logout,
       refreshMe,
       isAuthenticated: Boolean(token && user),

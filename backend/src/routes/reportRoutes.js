@@ -12,9 +12,9 @@ const router = express.Router();
 
 router.use(authenticate);
 
-router.get("/my-summary", authorize("parent", "teacher", "admin"), getMySummary);
-router.get("/summary/system", authorize("admin"), getSystemSummary);
-router.get("/summary/class/:className", authorize("teacher", "admin"), getClassSummary);
-router.get("/student/:studentId", authorize("parent", "teacher", "admin"), getStudentReport);
+router.get("/my-summary", authorize("parent", "teacher", "admin", "director"), getMySummary);
+router.get("/summary/system", authorize("admin", "director"), getSystemSummary);
+router.get("/summary/class/:className", authorize("teacher", "admin", "director"), getClassSummary);
+router.get("/student/:studentId", authorize("parent", "teacher", "admin", "director"), getStudentReport);
 
 module.exports = router;

@@ -90,8 +90,8 @@ export default function AdminDashboard() {
   return (
     <Layout>
       <div className="grid">
-      {error ? <div className="alert error">{error}</div> : null}
-      {status ? <div className="alert success">{status}</div> : null}
+        {error ? <div className="alert error">{error}</div> : null}
+        {status ? <div className="alert success">{status}</div> : null}
 
       <Card title="System Summary">
         {!systemSummary ? (
@@ -100,27 +100,27 @@ export default function AdminDashboard() {
           <div className="stats-grid">
             <div className="stat-box">
               <span>Total Users</span>
-              <strong>{systemSummary.totalUsers}</strong>
+              <strong>{systemSummary.users || 0}</strong>
             </div>
             <div className="stat-box">
               <span>Total Students</span>
-              <strong>{systemSummary.totalStudents}</strong>
+              <strong>{systemSummary.students || 0}</strong>
             </div>
             <div className="stat-box">
               <span>Attendance Entries</span>
-              <strong>{systemSummary.totalAttendanceRecords}</strong>
+              <strong>{systemSummary.records?.attendance || 0}</strong>
             </div>
             <div className="stat-box">
               <span>Grades</span>
-              <strong>{systemSummary.totalGrades}</strong>
+              <strong>{systemSummary.records?.grades || 0}</strong>
             </div>
             <div className="stat-box">
               <span>Behavior Reports</span>
-              <strong>{systemSummary.totalBehaviorReports}</strong>
+              <strong>{systemSummary.records?.behaviorReports || 0}</strong>
             </div>
             <div className="stat-box">
               <span>Unread Notifications</span>
-              <strong>{systemSummary.unreadNotifications}</strong>
+              <strong>{systemSummary.records?.notifications || 0}</strong>
             </div>
           </div>
         )}
@@ -162,6 +162,7 @@ export default function AdminDashboard() {
             >
               <option value="parent">Parent</option>
               <option value="teacher">Teacher</option>
+              <option value="director">Director</option>
               <option value="admin">Admin</option>
             </select>
           </label>

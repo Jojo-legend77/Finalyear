@@ -5,9 +5,9 @@ const { predictRisk, trainModel, aiSummary } = require("../controllers/aiControl
 
 const router = express.Router();
 
-router.use(authenticate, authorize("admin", "teacher", "parent"));
+router.use(authenticate, authorize("admin", "director", "teacher", "parent"));
 router.get("/risk-summary", predictRisk);
-router.post("/train", authorize("admin"), trainModel);
+router.post("/train", authorize("admin", "director"), trainModel);
 router.get("/summary", aiSummary);
 
 module.exports = router;

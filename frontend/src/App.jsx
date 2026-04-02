@@ -6,6 +6,7 @@ import RegisterPage from "./pages/RegisterPage";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import ParentDashboard from "./pages/ParentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import DirectorDashboard from "./pages/DirectorDashboard";
 import NotificationsPage from "./pages/NotificationsPage";
 import ReportsPage from "./pages/ReportsPage";
 import AIInsightsPage from "./pages/AIInsightsPage";
@@ -20,7 +21,7 @@ function App() {
       <Route
         path="/teacher"
         element={
-          <ProtectedRoute allowedRoles={["teacher", "admin"]}>
+          <ProtectedRoute allowedRoles={["teacher"]}>
             <TeacherDashboard />
           </ProtectedRoute>
         }
@@ -28,7 +29,7 @@ function App() {
       <Route
         path="/parent"
         element={
-          <ProtectedRoute allowedRoles={["parent", "admin"]}>
+          <ProtectedRoute allowedRoles={["parent"]}>
             <ParentDashboard />
           </ProtectedRoute>
         }
@@ -42,9 +43,17 @@ function App() {
         }
       />
       <Route
+        path="/director"
+        element={
+          <ProtectedRoute allowedRoles={["director"]}>
+            <DirectorDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
         path="/notifications"
         element={
-          <ProtectedRoute allowedRoles={["parent", "teacher", "admin"]}>
+          <ProtectedRoute allowedRoles={["parent", "teacher", "admin", "director"]}>
             <NotificationsPage />
           </ProtectedRoute>
         }
@@ -52,7 +61,7 @@ function App() {
       <Route
         path="/reports"
         element={
-          <ProtectedRoute allowedRoles={["teacher", "admin"]}>
+          <ProtectedRoute allowedRoles={["teacher", "admin", "director"]}>
             <ReportsPage />
           </ProtectedRoute>
         }
@@ -61,7 +70,7 @@ function App() {
       <Route
         path="/ai"
         element={
-          <ProtectedRoute allowedRoles={["parent", "teacher", "admin"]}>
+          <ProtectedRoute allowedRoles={["parent", "teacher", "admin", "director"]}>
             <AIInsightsPage />
           </ProtectedRoute>
         }

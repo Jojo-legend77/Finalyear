@@ -116,8 +116,9 @@ AI service default URL: `http://localhost:8001`
 
 ### Authentication & RBAC
 
-- Register/Login with JWT
-- Roles: `parent`, `teacher`, `admin`
+- Login with JWT
+- Public self-registration is disabled; user onboarding is admin-controlled
+- Roles: `parent`, `teacher`, `admin`, `director`
 - Route-level authorization middleware
 
 ### Entities and normalized schema
@@ -150,6 +151,13 @@ AI service default URL: `http://localhost:8001`
 - Manage students
 - Assign parent/teacher relationships
 - Manage system settings
+- Handle all account creation and registration
+
+### Director workflows
+
+- Access whole-school performance summaries
+- View class-level and student-level reports
+- Access AI risk insights across the school
 
 ### Reports
 
@@ -172,7 +180,7 @@ AI service default URL: `http://localhost:8001`
   - `POST /summary`
 - Backend AI endpoints:
   - `GET /api/ai/risk-summary`
-  - `POST /api/ai/train` (admin)
+  - `POST /api/ai/train` (admin/director)
   - `GET /api/ai/summary`
 - Predicts at-risk level from attendance, grade, and behavior features
 

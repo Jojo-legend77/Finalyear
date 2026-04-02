@@ -4,7 +4,7 @@ const { Attendance, Grade, BehaviorReport, Student, ParentStudent, TeacherStuden
 const { ok, fail } = require("../utils/response");
 
 const getStudentIdsForUser = async (user) => {
-  if (user.role === "admin") {
+  if (user.role === "admin" || user.role === "director") {
     const students = await Student.findAll({ attributes: ["id"] });
     return students.map((item) => item.id);
   }

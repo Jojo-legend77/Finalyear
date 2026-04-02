@@ -15,6 +15,8 @@ const env = {
   dbSync: (process.env.DB_SYNC || "false").toLowerCase() === "true",
   corsOrigin: process.env.CORS_ORIGIN || "http://localhost:5173",
   aiServiceUrl: process.env.AI_SERVICE_URL || "http://localhost:8001",
+  adminContactPhone: process.env.ADMIN_CONTACT_PHONE || "+000000000000",
+  schoolContactEmail: process.env.SCHOOL_CONTACT_EMAIL || "info@school.local",
 };
 
 module.exports = { env };

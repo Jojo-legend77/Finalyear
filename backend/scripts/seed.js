@@ -13,6 +13,7 @@ async function run() {
   await sequelize.sync({ alter: true });
 
   const adminPass = await bcrypt.hash("Admin@123", 10);
+  const directorPass = await bcrypt.hash("Director@123", 10);
   const teacherPass = await bcrypt.hash("Teacher@123", 10);
   const parentPass = await bcrypt.hash("Parent@123", 10);
 
@@ -38,6 +39,17 @@ async function run() {
     },
   });
 
+  const [director] = await User.findOrCreate({
+    where: { email: "director@school.local" },
+    defaults: {
+      fullName: "School Director",
+      email: "director@school.local",
+      passwordHash: directorPass,
+      role: "director",
+      status: "active",
+    },
+  });
+
   const [parent] = await User.findOrCreate({
     where: { email: "parent@school.local" },
     defaults: {
@@ -50,14 +62,13 @@ async function run() {
   });
 
   const [student] = await Student.findOrCreate({
-    where: { registrationNumber: "STU-0001" },
+    where: { firstName: "Ali", lastName: "Hassan", className: "Grade 7", section: "A" },
     defaults: {
       firstName: "Ali",
       lastName: "Hassan",
       className: "Grade 7",
       section: "A",
-      registrationNumber: "STU-0001",
-      status: "active",
+      isActive: true,
     },
   });
 
@@ -80,6 +91,7 @@ async function run() {
 
   console.log("Seed complete.");
   console.log("Admin:", admin.email, "password:", "Admin@123");
+  console.log("Director:", director.email, "password:", "Director@123");
   console.log("Teacher:", teacher.email, "password:", "Teacher@123");
   console.log("Parent:", parent.email, "password:", "Parent@123");
 }

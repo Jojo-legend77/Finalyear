@@ -9,9 +9,10 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const roleHome = user?.role ? `/${user.role}` : "/login";
 
   if (user) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to={roleHome} replace />;
   }
 
   const handleSubmit = async (event) => {
@@ -19,8 +20,8 @@ const LoginPage = () => {
     setError("");
     setLoading(true);
     try {
-      await login(email, password);
-      navigate("/dashboard");
+      const loggedInUser = await login(email, password);
+      navigate(`/${loggedInUser.role}`);
     } catch (err) {
       setError(err.message || "Login failed");
     } finally {
@@ -54,7 +55,7 @@ const LoginPage = () => {
           {loading ? "Signing in..." : "Login"}
         </button>
         <p className="muted small">
-          Don&apos;t have an account? <Link to="/register">Register</Link>
+          Need a new account? <Link to="/register">Contact admin</Link>
         </p>
       </form>
     </div>

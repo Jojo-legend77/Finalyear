@@ -33,7 +33,7 @@ const summaryForRecords = (student, attendance, grades, behaviorReports) => {
 };
 
 const canAccessStudent = async (user, studentId) => {
-  if (user.role === "admin") return true;
+  if (user.role === "admin" || user.role === "director") return true;
   if (user.role === "parent") {
     const link = await ParentStudent.findOne({ where: { parentId: user.id, studentId } });
     return !!link;
@@ -92,15 +92,16 @@ exports.getSystemSummary = async (_req, res) => {
       BehaviorReport.count(),
       Notification.count(),
     ]);
-    const [parent, teacher, admin] = await Promise.all([
+    const [parent, teacher, admin, director] = await Promise.all([
       User.count({ where: { role: "parent" } }),
       User.count({ where: { role: "teacher" } }),
       User.count({ where: { role: "admin" } }),
+      User.count({ where: { role: "director" } }),
     ]);
 
     return ok(res, {
       users,
-      usersByRole: { parent, teacher, admin },
+      usersByRole: { parent, teacher, admin, director },
       students,
       records: { attendance, grades, behaviorReports, notifications },
     });
@@ -153,7 +154,7 @@ exports.getClassSummary = async (req, res) => {
 
 exports.getMySummary = async (req, res) => {
   try {
-    if (req.user.role === "admin") {
+    if (req.user.role === "admin" || req.user.role === "director") {
       return exports.getSystemSummary(req, res);
     }
 
