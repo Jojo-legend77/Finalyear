@@ -42,14 +42,6 @@ function App() {
         }
       />
       <Route
-        path="/director"
-        element={
-          <ProtectedRoute allowedRoles={["director", "admin"]}>
-            <AdminDashboard />
-          </ProtectedRoute>
-        }
-      />
-      <Route
         path="/notifications"
         element={
           <ProtectedRoute allowedRoles={["parent", "teacher", "admin", "director"]}>

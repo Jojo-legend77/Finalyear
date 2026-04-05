@@ -1,6 +1,13 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+const adminLikeLinks = [
+  { to: "/admin", label: "Dashboard" },
+  { to: "/notifications", label: "Notifications" },
+  { to: "/reports", label: "Reports" },
+  { to: "/ai", label: "AI Insights" },
+];
+
 const roleLinks = {
   parent: [
     { to: "/parent", label: "Dashboard" },
@@ -12,18 +19,8 @@ const roleLinks = {
     { to: "/notifications", label: "Notifications" },
     { to: "/ai", label: "AI Insights" },
   ],
-  admin: [
-    { to: "/admin", label: "Dashboard" },
-    { to: "/notifications", label: "Notifications" },
-    { to: "/reports", label: "Reports" },
-    { to: "/ai", label: "AI Insights" },
-  ],
-  director: [
-    { to: "/admin", label: "Dashboard" },
-    { to: "/notifications", label: "Notifications" },
-    { to: "/reports", label: "Reports" },
-    { to: "/ai", label: "AI Insights" },
-  ],
+  admin: adminLikeLinks,
+  director: adminLikeLinks,
 };
 
 export default function Layout({ children }) {
