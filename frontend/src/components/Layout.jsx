@@ -18,6 +18,12 @@ const roleLinks = {
     { to: "/reports", label: "Reports" },
     { to: "/ai", label: "AI Insights" },
   ],
+  director: [
+    { to: "/admin", label: "Dashboard" },
+    { to: "/notifications", label: "Notifications" },
+    { to: "/reports", label: "Reports" },
+    { to: "/ai", label: "AI Insights" },
+  ],
 };
 
 export default function Layout({ children }) {

@@ -28,7 +28,7 @@ const createUser = async (req, res) => {
       return fail(res, "fullName, email, password and role are required", 400);
     }
 
-    if (!["parent", "teacher", "admin"].includes(role)) {
+    if (!["parent", "teacher", "admin", "director"].includes(role)) {
       return fail(res, "Invalid role", 400);
     }
 

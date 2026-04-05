@@ -56,7 +56,7 @@ function AIInsightsPage() {
         <button className="btn secondary" type="button" onClick={load}>
           Refresh
         </button>
-        {user?.role === "admin" ? (
+        {user?.role === "admin" || user?.role === "director" ? (
           <button className="btn primary" type="button" onClick={handleTrain}>
             Train Model
           </button>

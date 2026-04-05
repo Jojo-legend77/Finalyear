@@ -163,6 +163,7 @@ export default function AdminDashboard() {
               <option value="parent">Parent</option>
               <option value="teacher">Teacher</option>
               <option value="admin">Admin</option>
+              <option value="director">Director</option>
             </select>
           </label>
           <button type="submit">Create User</button>

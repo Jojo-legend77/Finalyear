@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
   full_name VARCHAR(120) NOT NULL,
   email VARCHAR(120) NOT NULL UNIQUE,
   password_hash VARCHAR(255) NOT NULL,
-  role ENUM('parent', 'teacher', 'admin') NOT NULL DEFAULT 'parent',
+  role ENUM('parent', 'teacher', 'admin', 'director') NOT NULL DEFAULT 'parent',
   status ENUM('active', 'inactive') NOT NULL DEFAULT 'active',
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
