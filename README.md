@@ -17,7 +17,7 @@ The system is implemented in two stages:
 
 ```text
 /backend      # REST API, RBAC, DB models, notifications, reports, AI proxy endpoints
-/frontend     # Role-based UI (Parent, Teacher, Admin)
+/frontend     # Role-based UI (Parent, Teacher, Admin, Director)
 /ai-service   # ML model training/prediction/summary service
 ```
 
@@ -117,7 +117,7 @@ AI service default URL: `http://localhost:8001`
 ### Authentication & RBAC
 
 - Register/Login with JWT
-- Roles: `parent`, `teacher`, `admin`
+- Roles: `parent`, `teacher`, `admin`, `director`
 - Route-level authorization middleware
 
 ### Entities and normalized schema
@@ -150,6 +150,13 @@ AI service default URL: `http://localhost:8001`
 - Manage students
 - Assign parent/teacher relationships
 - Manage system settings
+- Registration/account creation is managed by admin through the admin dashboard
+
+### Director workflows
+
+- Access school-wide system summaries and reports
+- Access AI insights and training controls
+- View notifications and reporting dashboards
 
 ### Reports
 
