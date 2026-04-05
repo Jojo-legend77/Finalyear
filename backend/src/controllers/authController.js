@@ -12,7 +12,11 @@ const sanitizeUser = (user) => ({
 });
 
 exports.register = async (req, res) => {
-  return fail(res, "Self-registration is disabled. Please contact the school admin for registration.", 403);
+  return fail(
+    res,
+    "Self-registration is disabled. Please contact the school administration for account registration.",
+    403,
+  );
 };
 
 exports.login = async (req, res) => {

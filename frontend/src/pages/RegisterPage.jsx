@@ -14,8 +14,8 @@ export default function RegisterPage() {
       <div className="auth-card">
         <h1>Registration information</h1>
         <p>
-          Registration is handled by the school administration only. Please contact the school administration about
-          your children for registration.
+          Registration is handled by the school administration only. Please contact the school administration for
+          account registration.
         </p>
         <p>
           <strong>School admin phone:</strong> {adminPhone}
