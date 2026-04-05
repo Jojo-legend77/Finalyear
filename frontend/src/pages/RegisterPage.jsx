@@ -15,7 +15,7 @@ export default function RegisterPage() {
         <h1>Registration information</h1>
         <p>
           Registration is handled by the school administration only. Please contact admin or reach out to the school
-          with your children for registration.
+          about your children for registration.
         </p>
         <p>
           <strong>Admin phone:</strong> {adminPhone}
