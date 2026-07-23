@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { CircleAlert } from "lucide-react";
 
+import { AuthPanel } from "@/components/auth-panel";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { saveAuth } from "@/lib/auth";
@@ -32,7 +34,7 @@ export default function LoginPage() {
       saveAuth(access, refresh, role);
       router.push(role === "staff_admin" ? "/staff" : "/dashboard");
     } catch {
-      setError("Login failed. Check your email/password and try again.");
+      setError("Sign in failed. Check your email and password, then try again.");
       setAuthToken(null);
     } finally {
       setLoading(false);
@@ -40,19 +42,24 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4">
-      <Card className="w-full max-w-md border-slate-200 shadow-sm">
-        <CardHeader>
-          <CardTitle className="text-xl text-slate-900">Sign in to School Fee Platform</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleLogin} className="space-y-4">
+    <div className="grid min-h-screen lg:grid-cols-2">
+      <AuthPanel />
+
+      <div className="flex items-center justify-center bg-white px-6 py-12">
+        <div className="w-full max-w-sm">
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Welcome back</h1>
+          <p className="mt-1.5 text-sm text-slate-500">
+            Sign in to view balances and pay school fees.
+          </p>
+
+          <form onSubmit={handleLogin} className="mt-8 space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Email address</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="parent@school.com"
+                className="h-10"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -63,18 +70,39 @@ export default function LoginPage() {
               <Input
                 id="password"
                 type="password"
+                placeholder="Your password"
+                className="h-10"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
-            {error && <p className="text-sm text-red-600">{error}</p>}
-            <Button type="submit" className="w-full bg-blue-700 hover:bg-blue-800" disabled={loading}>
+
+            {error && (
+              <div className="flex items-start gap-2 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2.5 text-sm text-rose-700">
+                <CircleAlert className="mt-0.5 size-4 shrink-0" />
+                {error}
+              </div>
+            )}
+
+            <Button
+              type="submit"
+              size="lg"
+              className="h-10 w-full bg-slate-900 hover:bg-slate-800"
+              disabled={loading}
+            >
               {loading ? "Signing in..." : "Sign in"}
             </Button>
           </form>
-        </CardContent>
-      </Card>
+
+          <p className="mt-6 text-center text-sm text-slate-500">
+            New parent?{" "}
+            <Link href="/register" className="font-medium text-slate-900 underline-offset-4 hover:underline">
+              Create an account
+            </Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
